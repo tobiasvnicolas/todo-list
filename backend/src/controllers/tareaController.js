@@ -22,9 +22,7 @@ class TareaController {
       const { descripcion } = req.body;
 
       if (!descripcion || descripcion.trim() === '') {
-        return res
-          .status(400)
-          .json({ error: 'La descripción es requerida' });
+        return res.status(400).json({ error: 'La descripción es requerida' });
       }
 
       const tarea = await TareaModel.create(descripcion);
