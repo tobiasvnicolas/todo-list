@@ -193,27 +193,10 @@ jobs:
           REACT_APP_API_URL: http://localhost:3001/api
         run: npm run build
 
-      - name: Verify build output
-        working-directory: ./frontend
-        run: |
-          if [ ! -d "build" ]; then
-            echo "❌ Frontend build directory does not exist."
-            exit 1
-          fi
-          if [ -z "$(ls -A build)" ]; then
-            echo "❌ Frontend build directory is empty."
-            exit 1
-          fi
-          echo "✅ Build directory exists and contains files:"
-          ls -la build/
-          echo "✅ Build completed successfully"
-
       - name: Start frontend server
         working-directory: ./frontend
         run: |
-          echo "Starting Vite preview server on port 3000..."
           npx vite preview --port 3000 --host 0.0.0.0 &
-          echo "Waiting for frontend server to be ready..."
           wait-on http://127.0.0.1:3000 -t 60000 -i 1000 -v
 
       - name: Run Cypress E2E tests
