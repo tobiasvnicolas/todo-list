@@ -15,13 +15,13 @@
 }
 
 .tarea-input:focus {
-  border-color: #4CAF50;
+  border-color: #4caf50;
 }
 
 .submit-button {
   padding: 12px 24px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;

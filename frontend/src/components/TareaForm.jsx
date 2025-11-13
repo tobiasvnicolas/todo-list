@@ -13,7 +13,11 @@ const TareaForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="tarea-form" data-testid="tarea-form">
+    <form
+      onSubmit={handleSubmit}
+      className="tarea-form"
+      data-testid="tarea-form"
+    >
       <input
         type="text"
         value={descripcion}
@@ -22,7 +26,11 @@ const TareaForm = ({ onSubmit }) => {
         data-testid="tarea-input"
         className="tarea-input"
       />
-      <button type="submit" data-testid="submit-button" className="submit-button">
+      <button
+        type="submit"
+        data-testid="submit-button"
+        className="submit-button"
+      >
         Agregar
       </button>
     </form>

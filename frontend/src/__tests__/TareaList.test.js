@@ -10,20 +10,22 @@ describe('TareaList', () => {
 
   it('renderiza la lista de tareas correctamente', () => {
     render(<TareaList tareas={mockTareas} onToggle={vi.fn()} />);
-    
+
     expect(screen.getByText('Tarea 1')).toBeInTheDocument();
     expect(screen.getByText('Tarea 2')).toBeInTheDocument();
   });
 
   it('muestra mensaje cuando no hay tareas', () => {
     render(<TareaList tareas={[]} onToggle={vi.fn()} />);
-    
-    expect(screen.getByText('No hay tareas. ¡Crea una nueva!')).toBeInTheDocument();
+
+    expect(
+      screen.getByText('No hay tareas. ¡Crea una nueva!')
+    ).toBeInTheDocument();
   });
 
   it('renderiza el número correcto de tareas', () => {
     render(<TareaList tareas={mockTareas} onToggle={vi.fn()} />);
-    
+
     const tareaItems = screen.getAllByTestId(/tarea-\d+/);
     expect(tareaItems).toHaveLength(2);
   });
@@ -31,7 +33,7 @@ describe('TareaList', () => {
   it('pasa la función onToggle a cada TareaItem', () => {
     const mockToggle = vi.fn();
     render(<TareaList tareas={mockTareas} onToggle={mockToggle} />);
-    
+
     expect(screen.getByTestId('tarea-list')).toBeInTheDocument();
   });
 });

@@ -16,6 +16,7 @@ Este documento contiene todos los comandos útiles para trabajar con el proyecto
 ## 🚀 Instalación Inicial
 
 ### Verificar requisitos
+
 ```powershell
 # Verificar versiones instaladas
 node --version        # Debe ser v18.x o superior
@@ -27,6 +28,7 @@ mysql --version       # Debe ser v8.0.x
 ```
 
 ### Instalar dependencias
+
 ```powershell
 # Backend
 cd backend
@@ -38,6 +40,7 @@ npm install
 ```
 
 ### Configurar variables de entorno
+
 ```powershell
 # Backend
 cd backend
@@ -100,7 +103,7 @@ docker-compose down
 cd backend
 npm run dev
 
-# Frontend  
+# Frontend
 cd frontend
 npm start
 ```
@@ -249,7 +252,7 @@ SELECT * FROM tareas;
 DELETE FROM tareas;
 
 -- Insertar tarea de prueba
-INSERT INTO tareas (descripcion, completada) 
+INSERT INTO tareas (descripcion, completada)
 VALUES ('Tarea de prueba', 0);
 
 -- Ver tareas completadas

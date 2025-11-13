@@ -31,11 +31,7 @@ describe('Gestor de Tareas - E2E Tests', () => {
     });
 
     it('debería permitir crear múltiples tareas', () => {
-      const tareas = [
-        'Primera tarea',
-        'Segunda tarea',
-        'Tercera tarea',
-      ];
+      const tareas = ['Primera tarea', 'Segunda tarea', 'Tercera tarea'];
 
       tareas.forEach((tarea) => {
         cy.createTarea(tarea);
@@ -122,7 +118,10 @@ describe('Gestor de Tareas - E2E Tests', () => {
 
       // Verificar que una tiene la clase completada y la otra no
       cy.get('.completada').should('have.length', 1);
-      cy.contains('Tarea a completar').parent().find('.completada').should('exist');
+      cy.contains('Tarea a completar')
+        .parent()
+        .find('.completada')
+        .should('exist');
     });
 
     it('las tareas completadas deberían tener texto tachado', () => {
@@ -130,7 +129,9 @@ describe('Gestor de Tareas - E2E Tests', () => {
       cy.get('[type="checkbox"]').first().check();
 
       // Verificar que tiene la clase completada (que aplica text-decoration: line-through)
-      cy.get('.completada').should('have.css', 'text-decoration').and('include', 'line-through');
+      cy.get('.completada')
+        .should('have.css', 'text-decoration')
+        .and('include', 'line-through');
     });
   });
 

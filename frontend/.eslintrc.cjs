@@ -12,9 +12,7 @@ module.exports = {
     'plugin:cypress/recommended',
     'prettier',
   ],
-  plugins: [
-    'cypress',
-  ],
+  plugins: ['cypress'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
