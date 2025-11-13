@@ -193,11 +193,18 @@ jobs:
           REACT_APP_API_URL: http://localhost:3001/api
         run: npm run build
 
+      - name: Verify build output
+        working-directory: ./frontend
+        run: |
+          echo "Checking build directory contents:"
+          ls -la build/
+          echo "Build completed successfully"
+
       - name: Start frontend server
         working-directory: ./frontend
         run: |
-          npx vite preview --port 3000 &
-          wait-on http://localhost:3000 -t 30000 -i 1000 -v
+          npx vite preview --port 3000 --outDir build &
+          wait-on http://localhost:3000 -t 60000 -i 1000 -v
 
       - name: Run Cypress E2E tests
         working-directory: ./frontend
