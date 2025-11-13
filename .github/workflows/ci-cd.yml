@@ -185,7 +185,7 @@ jobs:
           PORT: 3001
         run: |
           npm start &
-          wait-on http://localhost:3001/health -t 30000 -i 1000 -v
+          wait-on http://127.0.0.1:3001/health -t 30000 -i 1000 -v
 
       - name: Build frontend
         working-directory: ./frontend
@@ -214,7 +214,7 @@ jobs:
           echo "Starting Vite preview server on port 3000..."
           npx vite preview --port 3000 --host 0.0.0.0 &
           echo "Waiting for frontend server to be ready..."
-          wait-on http://localhost:3000 -t 60000 -i 1000 -v
+          wait-on http://127.0.0.1:3000 -t 60000 -i 1000 -v
 
       - name: Run Cypress E2E tests
         working-directory: ./frontend
