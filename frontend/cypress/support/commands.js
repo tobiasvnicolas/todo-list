@@ -20,3 +20,7 @@ Cypress.Commands.add('toggleTarea', (tareaId) => {
 Cypress.Commands.add('getTarea', (tareaId) => {
   return cy.get(`[data-testid="tarea-${tareaId}"]`);
 });
+
+Cypress.Commands.add('cleanDatabase', () => {
+  cy.request('DELETE', 'http://localhost:3001/api/tareas');
+});

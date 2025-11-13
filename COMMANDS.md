@@ -130,18 +130,42 @@ npm run test:watch
 
 ### Tests E2E con Cypress
 
+**⚠️ IMPORTANTE: Los contenedores de Docker DEBEN estar corriendo antes de ejecutar Cypress**
+
 ```powershell
+# 1. Asegurarse de que los contenedores estén corriendo
+docker-compose up -d
+
+# 2. Verificar que los servicios estén activos (opcional)
+docker-compose ps
+
+# 3. Ejecutar los tests de Cypress
 cd frontend
+
+# Modo headless (para CI/CD o ejecución rápida)
+npx cypress run
 
 # Modo interactivo (recomendado para desarrollo)
 npx cypress open
 
-# Modo headless (para CI/CD)
-npx cypress run
-
 # Ejecutar un test específico
 npx cypress run --spec "cypress/e2e/todo.cy.js"
+
+# 4. Detener los contenedores cuando termines (opcional)
+cd ..
+docker-compose down
 ```
+
+**🎯 Comando todo en uno (desde la raíz del proyecto):**
+```powershell
+docker-compose up -d; cd frontend; npx cypress run; cd ..
+```
+
+**📝 Notas:**
+- ✅ Los contenedores inician: MySQL (3307), Backend (3001), Frontend (3000)
+- ✅ La base de datos se limpia automáticamente antes de cada test
+- ✅ No necesitas reiniciar los contenedores entre ejecuciones de tests
+- ✅ Si los contenedores ya están corriendo, solo ejecuta `npx cypress run` desde `frontend`
 
 ### Ver reportes de coverage
 

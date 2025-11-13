@@ -59,6 +59,19 @@ class TareaController {
       res.status(500).json({ error: 'Error al actualizar tarea' });
     }
   }
+
+  /**
+   * Elimina todas las tareas (solo para testing)
+   */
+  static async deleteAll(req, res) {
+    try {
+      await TareaModel.deleteAll();
+      res.status(204).send();
+    } catch (error) {
+      console.error('Error al eliminar tareas:', error);
+      res.status(500).json({ error: 'Error al eliminar tareas' });
+    }
+  }
 }
 
 module.exports = TareaController;

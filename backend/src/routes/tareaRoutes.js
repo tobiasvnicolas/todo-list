@@ -12,4 +12,7 @@ router.post('/tareas', TareaController.create);
 // PUT /api/tareas/:id - Actualizar el estado de una tarea
 router.put('/tareas/:id', TareaController.updateStatus);
 
+// DELETE /api/tareas - Eliminar todas las tareas (solo para testing)
+router.delete('/tareas', TareaController.deleteAll);
+
 module.exports = router;

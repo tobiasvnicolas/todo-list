@@ -1,5 +1,7 @@
 describe('Gestor de Tareas - E2E Tests', () => {
   beforeEach(() => {
+    // Limpiar la base de datos antes de cada test
+    cy.cleanDatabase();
     // Visitar la aplicación antes de cada test
     cy.visit('/');
   });
@@ -113,8 +115,8 @@ describe('Gestor de Tareas - E2E Tests', () => {
       cy.createTarea('Tarea pendiente');
       cy.createTarea('Tarea a completar');
 
-      // Marcar la segunda como completada
-      cy.get('[type="checkbox"]').last().check();
+      // Marcar la primera como completada (las tareas se insertan al inicio)
+      cy.get('[type="checkbox"]').first().check();
 
       // Verificar que una tiene la clase completada y la otra no
       cy.get('.completada').should('have.length', 1);
