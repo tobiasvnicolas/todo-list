@@ -3,12 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
     jest: true,
+    'cypress/globals': true,
   },
   extends: [
     'react-app',
     'react-app/jest',
     'eslint:recommended',
+    'plugin:cypress/recommended',
     'prettier',
+  ],
+  plugins: [
+    'cypress',
   ],
   parserOptions: {
     ecmaFeatures: {

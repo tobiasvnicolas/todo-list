@@ -97,18 +97,16 @@ describe('Gestor de Tareas - E2E Tests', () => {
     });
 
     it('debería permitir toggle múltiple', () => {
-      const checkbox = cy.get('[type="checkbox"]').first();
-
       // Toggle 1: Marcar
-      checkbox.check();
+      cy.get('[type="checkbox"]').first().check();
       cy.get('.completada').should('exist');
 
       // Toggle 2: Desmarcar
-      checkbox.uncheck();
+      cy.get('[type="checkbox"]').first().uncheck();
       cy.get('.completada').should('not.exist');
 
       // Toggle 3: Marcar de nuevo
-      checkbox.check();
+      cy.get('[type="checkbox"]').first().check();
       cy.get('.completada').should('exist');
     });
   });

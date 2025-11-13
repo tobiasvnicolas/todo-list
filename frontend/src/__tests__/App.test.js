@@ -35,8 +35,8 @@ describe('App', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Tarea 1')).toBeInTheDocument();
-      expect(screen.getByText('Tarea 2')).toBeInTheDocument();
     });
+    expect(screen.getByText('Tarea 2')).toBeInTheDocument();
   });
 
   it('muestra mensaje de error si falla la carga', async () => {
