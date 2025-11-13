@@ -149,6 +149,16 @@ jobs:
         with:
           node-version: "18"
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            backend/node_modules
+            frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install backend dependencies
         working-directory: ./backend
         run: npm ci
@@ -156,6 +166,9 @@ jobs:
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm ci
+
+      - name: Install wait-on globally
+        run: npm install -g wait-on
 
       - name: Initialize database
         run: |
@@ -172,15 +185,19 @@ jobs:
           PORT: 3001
         run: |
           npm start &
-          npx wait-on http://localhost:3001/health
+          wait-on http://localhost:3001/health -t 30000 -i 1000 -v
 
-      - name: Start frontend server
+      - name: Build frontend
         working-directory: ./frontend
         env:
           REACT_APP_API_URL: http://localhost:3001/api
+        run: npm run build
+
+      - name: Start frontend server
+        working-directory: ./frontend
         run: |
-          npm start &
-          npx wait-on http://localhost:3000
+          npx vite preview --port 3000 &
+          wait-on http://localhost:3000 -t 30000 -i 1000 -v
 
       - name: Run Cypress E2E tests
         working-directory: ./frontend
