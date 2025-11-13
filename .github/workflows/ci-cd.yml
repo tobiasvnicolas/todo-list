@@ -203,7 +203,7 @@ jobs:
       - name: Start frontend server
         working-directory: ./frontend
         run: |
-          npx vite preview --port 3000 --outDir build &
+          npx vite preview --port 3000 --host 0.0.0.0 --outDir build &
           wait-on http://localhost:3000 -t 60000 -i 1000 -v
 
       - name: Run Cypress E2E tests
