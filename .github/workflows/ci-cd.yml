@@ -196,14 +196,24 @@ jobs:
       - name: Verify build output
         working-directory: ./frontend
         run: |
-          echo "Checking build directory contents:"
+          if [ ! -d "build" ]; then
+            echo "❌ Frontend build directory does not exist."
+            exit 1
+          fi
+          if [ -z "$(ls -A build)" ]; then
+            echo "❌ Frontend build directory is empty."
+            exit 1
+          fi
+          echo "✅ Build directory exists and contains files:"
           ls -la build/
-          echo "Build completed successfully"
+          echo "✅ Build completed successfully"
 
       - name: Start frontend server
         working-directory: ./frontend
         run: |
-          npx vite preview --port 3000 --host 0.0.0.0 --outDir build &
+          echo "Starting Vite preview server on port 3000..."
+          npx vite preview --port 3000 --host 0.0.0.0 &
+          echo "Waiting for frontend server to be ready..."
           wait-on http://localhost:3000 -t 60000 -i 1000 -v
 
       - name: Run Cypress E2E tests
