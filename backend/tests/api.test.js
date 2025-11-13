@@ -17,13 +17,13 @@ describe('Tarea API', () => {
           id: 1,
           descripcion: 'Tarea 1',
           completada: 0,
-          fecha_creacion: new Date(),
+          fecha_creacion: '2025-11-13T04:07:21.088Z',
         },
         {
           id: 2,
           descripcion: 'Tarea 2',
           completada: 1,
-          fecha_creacion: new Date(),
+          fecha_creacion: '2025-11-13T04:07:21.088Z',
         },
       ];
 
@@ -52,7 +52,7 @@ describe('Tarea API', () => {
         id: 1,
         descripcion: 'Nueva tarea',
         completada: 0,
-        fecha_creacion: new Date(),
+        fecha_creacion: '2025-11-13T04:07:21.442Z',
       };
 
       TareaModel.create.mockResolvedValue(nuevaTarea);
@@ -100,7 +100,7 @@ describe('Tarea API', () => {
         id: 1,
         descripcion: 'Tarea 1',
         completada: 1,
-        fecha_creacion: new Date(),
+        fecha_creacion: '2025-11-13T04:07:21.578Z',
       };
 
       TareaModel.updateStatus.mockResolvedValue(tareaActualizada);

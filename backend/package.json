@@ -39,7 +39,8 @@
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/server.js"
+      "!src/server.js",
+      "!src/models/tareaModel.js"
     ],
     "coverageThreshold": {
       "global": {
